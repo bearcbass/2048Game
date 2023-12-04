@@ -4,6 +4,14 @@
 import random
 
 #This function will set up the game
+
+def print_grid(grid):
+    for row in grid:
+        print(" | ".join("{:^5}".format(str(cell) if cell != 0 else '.') for cell in row))
+        print("-" * 29)
+    print()
+
+
 def start_game():
     grid = []
     for i in range(4):
@@ -14,18 +22,19 @@ def start_game():
     print("a is to go left")
     print("d is to go right")
     add_new_2(grid)
+    print("add_new_2 works")
     return grid
 
 #This function will keep adding a new 2 tile
 #to the grid
 def add_new_2(grid):
-    row = random.randint(0,3)
-    column = random.randint(0,3)
+    r = random.randint(0,3)
+    c = random.randint(0,3)
 
-    while(grid[row]!= 0):
-        row = random.randint(0,3)
-        column = random.randint(0,3)
-    grid[row] = 2
+    while grid[r][c] != 0:
+        r = random.randint(0,3)
+        c = random.randint(0,3)
+    grid[r][c] = 2
 
 
 #Return the current state of the game
@@ -138,12 +147,12 @@ def move_right(grid):
 
 def move_up(grid):
     new_grid = transpose(grid)
-    new_grid, changed = move_left(grid)
+    new_grid, changed = move_left(new_grid)
     new_grid = transpose(new_grid)
     return new_grid, changed
 
 def move_down(grid):
     new_grid = transpose(grid)
-    new_grid, changed = move_right(grid)
+    new_grid, changed = move_right(new_grid)
     new_grid = transpose(new_grid)
     return new_grid, changed

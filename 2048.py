@@ -2,50 +2,56 @@
 import logic
 
 if __name__ == '__main__':
-    mat = logic.start_game
+    mat = logic.start_game()
 
-while(True):
-    x = input("Please enter command: ")
+    while True:
+        logic.print_grid(mat)
+        x = input("Please enter command: ")
 
-    if (x == 'W' or x == 'w'):
-        mat, flag = logic.move_up(mat)
-        status = logic.get_current_state(mat)
-        print(status)
+        if (x == 'W' or x == 'w'):
+            mat, flag = logic.move_up(mat)
+            status = logic.get_current_state(mat)
+            print(status)
 
-        if(status == "GAME IS NOT OVER"):
-            logic.add_new_2(mat)
+            if(status == "GAME IS NOT OVER"):
+                logic.add_new_2(mat)
         
-        else:
-            break
+            else:
+                break
 
-    elif (x == 'S' or x == 's'):
-        mat, flag = logic.move_down(mat)
-        status = logic.get_current_state(mat)
-        print(status)
-        if(status == "GAME IS NOT OVER"):
-            logic.add_new_2(mat)
+        elif (x == 'S' or x == 's'):
+            mat, flag = logic.move_down(mat)
+            status = logic.get_current_state(mat)
+            print(status)
+            if(status == "GAME IS NOT OVER"):
+                logic.add_new_2(mat)
         
-        else:
-            break
-    elif (x == 'A' or x == 'a'):
-        mat, flag = logic.move_left(mat)
-        status = logic.get_current_state(mat)
-        print(status)
-        if(status == "GAME IS NOT OVER"):
-            logic.add_new_2(mat)
+            else:
+                break
+        elif (x == 'A' or x == 'a'):
+            mat, flag = logic.move_left(mat)
+            status = logic.get_current_state(mat)
+            print(status)
+            if(status == "GAME IS NOT OVER"):
+                logic.add_new_2(mat)
         
+            else:
+                break
+        elif (x == 'd' or x == 'D'):
+            mat, flag = logic.move_right(mat)
+            status = logic.get_current_state(mat)
+            print(status)
+            if(status == "GAME IS NOT OVER"):
+                logic.add_new_2(mat)
+            else:
+                break
         else:
+            print("Invalid Key Pressed")
+
+        if(status == 'GAME OVER'):
+            print('GAME OVER :(')
             break
-    elif (x == 'd' or x == 'D'):
-        mat, flag = logic.move_left(mat)
-        status = logic.get_current_state(mat)
-        print(status)
-        if(status == "GAME IS NOT OVER"):
+            
             logic.add_new_2(mat)
 
-        else:
-            break
-    else:
-        print("Invalid Key Pressed")
-
-    print(mat)
+        logic.print_grid(mat)
